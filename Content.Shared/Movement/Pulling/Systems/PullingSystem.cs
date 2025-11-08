@@ -14,6 +14,24 @@ using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Effects;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Speech;
+using Content.Shared.Throwing;
+using Content.Shared.Weapons.Melee;
+using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
+using Robust.Shared.Physics.Dynamics.Joints;
+using Robust.Shared.Random;
+// </Trauma>
+using Content.Shared.ActionBlocker;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Alert;
+using Content.Shared.Buckle.Components;
+using Content.Shared.Cuffs;
+using Content.Shared.Cuffs.Components;
 using Content.Shared.Database;
 using Content.Shared.Effects;
 using Content.Shared.Gravity;
@@ -976,6 +994,24 @@ public sealed class PullingSystem : EntitySystem
     {
         puller.Comp.GrabStage = stage;
         pullable.Comp.GrabStage = stage;
+
+        // <Trauma> - harder grabs force you closer together, you can't use mind powers to choke someone 3m away
+        var stageLength = stage switch
+        {
+            GrabStage.Hard => 0.5f,
+            GrabStage.Suffocate => 0.25f,
+            _ => 30f // basically use interaction range for softgrab
+        };
+        if (pullable.Comp.PullJointId is {} jointId &&
+            TryComp<JointComponent>(pullable, out var jointComp) &&
+            jointComp.GetJoints.TryGetValue(jointId, out var joint) &&
+            joint is DistanceJoint distJoint &&
+            distJoint.MaxLength > stageLength)
+        {
+            distJoint.MaxLength = stageLength;
+            Dirty(pullable, jointComp);
+        }
+        // </Trauma>
 
         if (!TryUpdateGrabVirtualItems(puller, pullable))
             return false;

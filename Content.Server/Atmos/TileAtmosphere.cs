@@ -93,8 +93,11 @@ public sealed class TileAtmosphere : IGasMixtureHolder
         set => Air = value;
     }
 
-    [ViewVariables]
-    public float MaxFireTemperatureSustained { get; set; }
+        [ViewVariables]
+        public float MaxFireTemperatureSustained { get; set; }
+
+        [ViewVariables]
+        public int PuddleSolutionFlammability { get; set; }
 
     /// <summary>
     /// If true, then this tile is directly exposed to the map's atmosphere, either because the grid has no tile at

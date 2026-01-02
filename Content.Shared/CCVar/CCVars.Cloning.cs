@@ -8,7 +8,7 @@ public sealed partial class CCVars
     ///     How much should the cost to clone an entity be multiplied by.
     /// </summary>
     public static readonly CVarDef<float> CloningBiomassCostMultiplier =
-        CVarDef.Create("cloning.biomass_cost_multiplier", 1f, CVar.SERVERONLY);
+        CVarDef.Create("cloning.biomass_cost_multiplier", 0f, CVar.SERVERONLY);
 
     /// <summary>
     ///     Whether or not the Biomass Reclaimer is allowed to roundremove bodies with a soul.

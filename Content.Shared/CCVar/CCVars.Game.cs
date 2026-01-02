@@ -81,7 +81,7 @@ public sealed partial class CCVars
     /// If roles should be restricted based on whether or not they are whitelisted.
     /// </summary>
     public static readonly CVarDef<bool>
-        GameRoleWhitelist = CVarDef.Create("game.role_whitelist", true, CVar.SERVER | CVar.REPLICATED);
+        GameRoleWhitelist = CVarDef.Create("game.role_whitelist", false, CVar.SERVER | CVar.REPLICATED);
 
 
     /// <summary>
@@ -120,7 +120,7 @@ public sealed partial class CCVars
     /// If roles should be restricted based on time.
     /// </summary>
     public static readonly CVarDef<bool>
-        GameRoleTimers = CVarDef.Create("game.role_timers", true, CVar.SERVER | CVar.REPLICATED);
+        GameRoleTimers = CVarDef.Create("game.role_timers", false, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Override default role requirements using a <see cref="CharacterRequirementOverridePrototype"/>

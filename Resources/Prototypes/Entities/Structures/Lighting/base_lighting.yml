@@ -34,7 +34,7 @@
   - type: EtherealLight
   - type: PointLight
     color: "#e1af9d" # 5000K color temp
-    energy: 0.8
+    energy: 1
     radius: 10
     softness: 1
     offset: "0, -0.5"

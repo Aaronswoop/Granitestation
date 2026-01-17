@@ -129,4 +129,4 @@
 
     # Fallback # REQUIRED
     - id: fallback # Any announcement sent without a valid announcement on this announcer will use this
-      path: attention.ogg
+      path: comms/cart_warning_single.ogg

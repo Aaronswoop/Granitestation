@@ -42,6 +42,7 @@
     heldPrefix: off
   - type: EtherealLight
   - type: PointLight
+    color: "#c79783"
     enabled: false
     radius: 3
     energy: 2
